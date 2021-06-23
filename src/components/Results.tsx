@@ -19,8 +19,14 @@ const Results: React.FC<Props> = () => {
 	const { setRecentPhotos, recentPhotos, setPage, page } = useFlickr();
 
 	const loadMorePhotos = () => {
+		setPage((page) => page + 1);
 		setLoading(true);
-		fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&extras=date_upload%2C+description%2C+owner_name%2C+tags&per_page=10&page=${page}&format=json&nojsoncallback=1`).then((res) => {
+		// flickr.photos.search
+		// Extras: date_upload, description, owner_name, tags
+		// Params: safe_search=1, per_page=10, max_upload_date=1624476931
+		const unixDate = Math.round((new Date()).getTime() / 1000);
+		console.log(unixDate);
+		fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&max_upload_date=${unixDate}&safe_search=1&extras=date_upload%2C+description%2C+owner_name%2C+tags&per_page=10&page=${page}&format=json&nojsoncallback=1`).then((res) => {
 			return res.json();
 		}).then((data) => {
 			const nextFetch: RecentPhoto[] = data.photos.photo;
@@ -41,7 +47,6 @@ const Results: React.FC<Props> = () => {
 				return [...prevPhotos, ...nonDuplicates];
 			});
 			setLoading(false);
-			setPage((page) => page + 1);
 		}).catch((error) => {
 			console.log(error);
 		});

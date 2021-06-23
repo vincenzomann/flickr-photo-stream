@@ -23,7 +23,7 @@ export function useFlickr() {
 }
 
 const FlickrProvider: React.FC = ({ children }) => {
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(0);
 	const [recentPhotos, setRecentPhotos] = useState<RecentPhoto[]>([]);
 
 	const values = {
