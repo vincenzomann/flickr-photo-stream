@@ -18,6 +18,9 @@ const Results: React.FC<Props> = () => {
 
 	const { setRecentPhotos, recentPhotos, setPage, page } = useFlickr();
 
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState('');
+
 	const loadMorePhotos = () => {
 		setPage((page) => page + 1);
 		setLoading(true);
@@ -25,10 +28,10 @@ const Results: React.FC<Props> = () => {
 		// Extras: date_upload, description, owner_name, tags
 		// Params: safe_search=1, per_page=10, max_upload_date=1624476931
 		const unixDate = Math.round((new Date()).getTime() / 1000);
-		console.log(unixDate);
 		fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&max_upload_date=${unixDate}&safe_search=1&extras=date_upload%2C+description%2C+owner_name%2C+tags&per_page=10&page=${page}&format=json&nojsoncallback=1`).then((res) => {
 			return res.json();
 		}).then((data) => {
+			console.log(data);
 			const nextFetch: RecentPhoto[] = data.photos.photo;
 			// Filter out duplicates because the flickr api pagination is broken!
 			setRecentPhotos((prevPhotos) => {
@@ -48,7 +51,7 @@ const Results: React.FC<Props> = () => {
 			});
 			setLoading(false);
 		}).catch((error) => {
-			console.log(error);
+			setError('Invalid API Key, please go to https://www.flickr.com/services/api/keys and insert your API key in the .env file');
 		});
 	};
 
@@ -56,10 +59,6 @@ const Results: React.FC<Props> = () => {
 	useEffect(() => {
 		loadMorePhotos();
 	}, []);
-
-	const [loading, setLoading] = useState(true);
-	const [initialLoad, setInitialLoad] = useState(true);
-	const resultsRef = useRef<HTMLDivElement>(null);
 
 	// Event listener to fetch more entries when scrolling to top is detected
 	const container = document.getElementById('root');
@@ -80,13 +79,12 @@ const Results: React.FC<Props> = () => {
 	}, [loadMorePhotos, loading]);
 
 	return (
-		<div id='results' ref={resultsRef} className='row justify-content-around'>
-			{/* {recentPhotos && console.log(recentPhotos)} */}
+		<div id='results' className='row justify-content-around'>
 			{page && <div id='pageHeader'>Recent Photos - page: {page}</div>}
+			{error && <div id='pageHeader'>Error: {error}</div>}
 			{recentPhotos.map((photo) => (
 				<PhotoCard photo={photo} key={photo.id} />
-			))
-			}
+			))}
 		</div>
 	);
 };
