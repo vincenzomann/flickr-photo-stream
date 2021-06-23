@@ -6,7 +6,7 @@ import FlickrProvider from './context/FlickrContext';
 
 function App() {
 	return (
-		<div className="App">
+		<div id='app'>
 			<FlickrProvider>
 				<Header />
 				<Results />

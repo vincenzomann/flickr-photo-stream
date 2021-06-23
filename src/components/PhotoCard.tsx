@@ -24,8 +24,8 @@ const Photo: React.FC<Props> = ({ photo }) => {
 						{photo.ownername}
 					</a>
 				</p>
-				<p className="card-text">Description: <p>{photo.description._content}</p></p>
-				<p className="card-text">Tags: <p>{photo.tags.replace(/ /g, ', ')}</p></p>
+				<div className="card-text">Description: <p>{photo.description._content}</p></div>
+				<div className="card-text">Tags: <p>{photo.tags.replace(/ /g, ', ')}</p></div>
 			</div>
 		</div>
 	);
