@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFlickr } from '../context/FlickrContext';
 import SearchBar from './SearchBar';
 
 interface Props {
@@ -6,10 +7,21 @@ interface Props {
 }
 
 const Header: React.FC<Props> = () => {
+
+	const { page, error, searchTerm } = useFlickr();
+
 	return (
 		<div id='header' className='row'>
-			<h1>Flickr Photo Stream</h1>
-			<SearchBar />
+			{!error ? (
+				<>
+					<div className="col pageCount">{searchTerm ? 'Search Results' : 'Recent Photos'}: page {page}</div>
+					<div className="col-sm-6">
+						<SearchBar />
+					</div>
+				</>
+			) : (
+				<div>Error: {error}</div>
+			)}
 		</div>
 	);
 };

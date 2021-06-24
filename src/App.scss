@@ -14,22 +14,42 @@ html, body, #root {
 }
 
 #app {
-	padding: 1rem;
+	padding-top: 1rem;
 	min-height: 100%;
 	background-color: rgb(248, 248, 248);
 	#header {
+		padding: 0.75rem 0;
+		position: sticky;
+		top: 0;
+		z-index: 1;
 		width: 100%;
+		background-color: rgb(248, 248, 248);
+		box-shadow: 0px 18px 15px rgba(0, 0, 0, 0.1);
+		.pageCount {
+			padding-bottom: 0.5rem;
+		}
+		#searchBorder {
+			padding: 0 0.5rem;
+			border: 1px solid black;
+			border-radius: 15px;
+			.formRow {
+				.searchBtn {
+					padding: 0 0.2rem;
+					border: none;
+					border-radius: 15px;
+					background-color: rgb(248, 248, 248);
+				}
+				#searchInput {
+					padding: 0 0.2rem;
+					border: none;
+					background-color: rgb(248, 248, 248);
+				}
+			}
+		}
 	}
 	#results {
 		width: 100%;
-		#pageHeader {
-			padding: 0.75rem 1rem;
-			position: sticky;
-			top: 0;
-			z-index: 1;
-			width: 100%;
-			background-color: rgb(248, 248, 248);
-		}
+		padding: 1rem;
 		.card {
 			max-width: 100%;
 			width: 300px;
@@ -38,6 +58,7 @@ html, body, #root {
 			}
 			margin: 1rem;
 			padding: 1rem;
+			box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 			#cardImg {
 				width: 100%;
 			}

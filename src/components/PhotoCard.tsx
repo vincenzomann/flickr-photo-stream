@@ -25,7 +25,7 @@ const Photo: React.FC<Props> = ({ photo }) => {
 					</a>
 				</p>
 				<div className="card-text">
-					<p>Upload: {new Date(parseInt(photo.dateupload) * 1000).toUTCString()}</p>
+					<p>Uploaded: {new Date(parseInt(photo.dateupload) * 1000).toUTCString()}</p>
 					<p>Taken: {photo.datetaken}</p>
 				</div>
 				<div className="card-text">Description: <p>{photo.description._content}</p></div>

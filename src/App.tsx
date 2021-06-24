@@ -8,6 +8,9 @@ function App() {
 	return (
 		<div id='app'>
 			<FlickrProvider>
+				<div className='row'>
+					<h1>Flickr Photo Stream</h1>
+				</div>
 				<Header />
 				<Results />
 			</FlickrProvider>
