@@ -10,15 +10,15 @@ const SearchBar: React.FC<Props> = () => {
 	const [input, setInput] = useState('');
 
 	return (
-		<div id='searchBorder'>
+		<div id='searchBorder' data-testid='searchBar'>
 			<form
+				id='searchForm' data-testid='searchForm'
 				onSubmit={(e) => {
 					e.preventDefault();
 					setSearchTerm(input);
-				}}
-				style={{ justifyContent: 'center' }}>
+				}}>
 				<div className="row formRow">
-					<button className='col searchBtn' type='submit'>
+					<button className='col searchBtn' type='submit' data-testid='searchBtn'>
 						<i className='bi bi-search' />
 					</button>
 					<input className='col-8' id='searchInput' type='text' placeholder='search'

@@ -7,7 +7,7 @@ interface Props {
 
 const Photo: React.FC<Props> = ({ photo }) => {
 	return (
-		<div className='card'>
+		<div className='card' data-testid={`photoCard-${photo.id}`}>
 			<a className='cardLink' target='__blank'
 				href={`https://www.flickr.com/photos/${photo.owner}/${photo.id}`}>
 				<img id='cardImg' alt="photo"
@@ -15,7 +15,7 @@ const Photo: React.FC<Props> = ({ photo }) => {
 			</a>
 			<div className="card-body">
 				<p className="card-title">
-					<a className='photoTitle' target='__blank'
+					<a className='photoTitle' target='__blank' data-testid='photoTitle'
 						href={`https://www.flickr.com/photos/${photo.owner}/${photo.id}`}>
 						{photo.title}
 					</a>

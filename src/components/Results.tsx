@@ -77,9 +77,9 @@ const Results: React.FC<Props> = () => {
 	}, [loadMorePhotos, loading]);
 
 	return (
-		<div id='results' className='row justify-content-around'>
+		<div id='results' className='row justify-content-around' data-testid='results'>
 			{recentPhotos.map((photo) => (
-				<PhotoCard photo={photo} key={photo.id} />
+				<PhotoCard photo={photo} key={photo.id} data-testid={`photoCard-${photo.id}`} />
 			))}
 		</div>
 	);

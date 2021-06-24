@@ -47,7 +47,7 @@ const FlickrProvider: React.FC = ({ children }) => {
 	};
 
 	return (
-		<FlickrContext.Provider value={values} >
+		<FlickrContext.Provider value={values} data-testid='provider'>
 			{children}
 		</FlickrContext.Provider>
 	);

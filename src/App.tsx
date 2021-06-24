@@ -7,7 +7,7 @@ import FlickrProvider from './context/FlickrContext';
 function App() {
 	return (
 		<div id='app'>
-			<FlickrProvider>
+			<FlickrProvider data-testid='provider'>
 				<div className='row'>
 					<h1>Flickr Photo Stream</h1>
 				</div>
