@@ -24,6 +24,10 @@ const Photo: React.FC<Props> = ({ photo }) => {
 						{photo.ownername}
 					</a>
 				</p>
+				<div className="card-text">
+					<p>Upload: {new Date(parseInt(photo.dateupload) * 1000).toUTCString()}</p>
+					<p>Taken: {photo.datetaken}</p>
+				</div>
 				<div className="card-text">Description: <p>{photo.description._content}</p></div>
 				<div className="card-text">Tags: <p>{photo.tags.replace(/ /g, ', ')}</p></div>
 			</div>

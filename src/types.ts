@@ -1,6 +1,9 @@
 export interface RecentPhoto {
 	dateupload: string;
+	datetaken: string;
 	description: { _content: string; };
+	datetakengranularity: number;
+	datetakenunknown: string;
 	farm: number;
 	id: string;
 	isfamily: number;
